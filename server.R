@@ -67,7 +67,7 @@ shinyServer(function(input, output) {
               min.freq = 2, 
               max.words = 100,
               random.order = FALSE, 
-              random.order = FALSE)
+              random.color = FALSE)
               #colors = brewer.pal(6, "Dark2"))
   })
     
