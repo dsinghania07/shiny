@@ -50,20 +50,10 @@ shinyServer(function(input, output) {
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
     x <- as.data.frame(x)
-    if (input$Language == "English"){
-      all_words = x %>% subset(., xpos %in% input$file);
-    }
-    else{
-      y <- input$file
-      for(i in seq_len(length(input$file))){
-        if (input$file[i] == "NN"){
-          y[i] <- "NOUN"
-        }
-      }
-      all_words = x %>% subset(., upos %in% y);
-    }
-    top_words = txt_freq(all_words$lemma)
-    wordcloud(top_words$key,top_words$freq,min.freq = 2,max.words = 100,random.order = FALSE,colors = brewer.pal(6, "Dark2"))
+    all_nouns = x %>% subset(., upos %in% "NOUN") 
+    top_nouns = txt_freq(all_nouns$lemma) 
+    head(top_nouns, 10)	
+    wordcloud(top_nouns$key,top_nouns$freq,min.freq = 2,max.words = 100,random.order = FALSE,colors = brewer.pal(6, "Dark2"))
   })
   
   output$plot3 = renderPlot({
@@ -84,7 +74,7 @@ shinyServer(function(input, output) {
       all_words = x %>% subset(., upos %in% y);
     }
     top_words = txt_freq(all_words$lemma)
-    wordcloud(top_words$key,top_words$freq,min.freq = 2,max.words = 100,random.order = FALSE,colors = brewer.pal(9, "BuGn"))
+    wordcloud(top_words$key,top_words$freq,min.freq = 2,max.words = 100,random.order = FALSE,colors = brewer.pal(6, "Dark2"))
   })
     
   output$plot1 = renderPlot({
@@ -122,10 +112,10 @@ shinyServer(function(input, output) {
     }
     word_1 <- head(co_occ, 75)
     word_1 <- igraph::graph_from_data_frame(word_1) 
-    ggraph(word_1) +  
+    ggraph(word_1, layout = "fr") +  
                        
-                       geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "red") +  
-                       geom_node_text(aes(label = name), col = "green", size = 6) +
+                       geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "orange") +  
+                       geom_node_text(aes(label = name), col = "darkgreen", size = 6) +
                        
                        theme_graph(base_family = "Arial Narrow") +  
                        theme(legend.position = "none") +
