@@ -8,7 +8,7 @@ tags$style(type="text/css",
 shinyUI(
   fluidPage(
   
-    titlePanel("UDPipe NLP Workflow"),
+    titlePanel("Shiny App around the UDPipe NLP workflow"),
   
     sidebarLayout( 
       
@@ -20,7 +20,7 @@ shinyUI(
                                  choices = list("Adjective(JJ)" = "JJ", "Noun(NN)" = "NN", "Proper Noun(NNP)" = "NNP", "Adverb(RB)" = "RB", "Verb(VB)" = "VB"),
                                  selected = c("JJ","NN","NNP")),
               selectInput("Language", label = h3("Select Language"), 
-                          choices = list("English" = "English", "Spanish" = "Spanish","Hindi" = "Hindi", "Tamil" = "Tamil", "Dutch" = "Dutch", "German" = "German", "Other" = "Other"), 
+                          choices = list("English" = "English", "Hindi" = "Hindi","German" = "German", "Other" = "Other"), 
                           selected = "English"),
               hr(),
               fluidRow(column(3, verbatimTextOutput("value"))),
@@ -31,18 +31,17 @@ shinyUI(
       tabsetPanel(type = "tabs",
                   tabPanel("Overview",
                            h4(p("Data input")),
-                           p("This app supports only text files (.txt) data file.Please ensure that the text files are saved in UTF-8 Encoding format.",align="justify"),
-                           h4('How to use this App'),
+                           p("This app supports only text files (.txt) data file.Please upload the file only in .txt format",align="justify"),
                            p('To use this app, click on', 
                              span(strong("Upload Sample Text File in .txt format:"),
                              'and click on',
                              span(strong("Upload Trained UDPipe Model:"), 'and upload the UDPipe file.'),
-                             span(strong("SELECT LANGUAGE as well!!!"))))),
+                             span(strong("SELECT LANGUAGE"))))),
+                  tabPanel("Annoted Documents",plotOutput('plot3')),
                   tabPanel("Word Cloud",plotOutput('plot')),
-                  tabPanel("Co-Occurence Plot",plotOutput('plot1')),
-                  tabPanel("Data",p(span(strong('Unable to display Indian Regional Languages data unfortunately!!'))),textOutput('Text_Data'))
-      ) # end of tabsetPanel
-    )# end of main panel
-  ) # end of sidebarLayout
-)  # end of fluidPage
-) # end of UI
+                  tabPanel("Co-Occurence Plot",plotOutput('plot1'))
+      ) 
+    )
+  ) 
+)
+)
