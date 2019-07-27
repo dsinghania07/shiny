@@ -27,6 +27,15 @@ shinyServer(function(input, output) {
     x <- select(x, -sentence)
   })
   
+  
+  datasetInput <- reactive({
+    switch(input$table)
+  })
+  
+  output$table <- renderTable({
+    datasetInput()
+  })
+  
   output$downloadData <- downloadHandler(
     filename = function() {
       paste(input$table, ".csv", sep = "")
