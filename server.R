@@ -27,6 +27,15 @@ shinyServer(function(input, output) {
     x <- select(x, -sentence)
   })
   
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste(input$table, ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(datasetInput(), file, row.names = FALSE)
+    }
+  )
+  
   output$plot = renderPlot({
     inputText <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
