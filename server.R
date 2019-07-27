@@ -28,13 +28,13 @@ shinyServer(function(input, output) {
   })
   
   
-  datasetInput <- reactive({
-    switch(input$table)
-  })
+  #datasetInput <- reactive({
+   # switch(input$table)
+  #})
   
-  output$table <- renderTable({
-    datasetInput()
-  })
+  #output$table <- renderTable({
+   # datasetInput()
+  #})
   
   output$downloadData <- downloadHandler(
     filename = function() {
