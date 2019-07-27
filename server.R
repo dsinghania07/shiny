@@ -1,6 +1,6 @@
 shinyServer(function(input, output) {
   options(shiny.maxRequestSize=30*1024^2)
-  text <- reactive({
+  text_1 <- reactive({
     if (is.null(input$text)) {return(NULL) }
     else{
       Data <- readLines(input$text$datapath,encoding = "UTF-8")
@@ -12,14 +12,14 @@ shinyServer(function(input, output) {
           return(NULL) } else{
         
         a <- udpipe_load_model(file = input$udpipe$datapath)
-        text1 <- udpipe_annotate(a, x = as.character(text()))
+        text1 <- udpipe_annotate(a, x = as.character(text_1()))
         text1 <- as.data.frame(text1)
         return(text1)
       }
   })
-# Calc and render plot    
+# PLotting    
   output$plot = renderPlot({
-    inputText <-  as.character(text())
+    inputText <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
     x <- as.data.frame(x)
@@ -58,7 +58,7 @@ shinyServer(function(input, output) {
   
   
   output$plot1 = renderPlot({
-    inputText <-  as.character(text())
+    inputText <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
     x <- as.data.frame(x)
@@ -102,10 +102,5 @@ shinyServer(function(input, output) {
                        theme(legend.position = "none") +
                        
                        labs(title = "Cooccurrence Plot", subtitle = "Speech TAGS as chosen"))
-  })
-  
-  output$Text_Data = renderText({
-    inputText <-  as.character(text())
-    inputText
   })
 })
