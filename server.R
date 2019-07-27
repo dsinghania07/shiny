@@ -62,12 +62,12 @@ shinyServer(function(input, output) {
       all_words = x %>% subset(., upos %in% y);
     }
     top_words = txt_freq(all_words$lemma)
-    wordcloud(words = top_words$key, 
-              freq = top_words$freq, 
+    wordcloud(top_words$key, 
+              top_words$freq, 
               min.freq = 2, 
               max.words = 100,
               random.order = FALSE, 
-              colors = brewer.pal(9, "Bugn"))
+              colors = brewer.pal(9, "BuGn"))
   })
     
   output$plot1 = renderPlot({
