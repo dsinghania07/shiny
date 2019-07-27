@@ -38,7 +38,7 @@ shinyUI(
                              span(strong("Upload Trained UDPipe Model:"), 'and upload the UDPipe file.'),
                              span(strong("SELECT LANGUAGE"))))),
                   tabPanel("Annoted Documents",plotOutput('plot3')),
-                  tabPanel("Word Cloud",plotOutput('plot'),plotOutput('plot3')),
+                  tabPanel("Word Cloud",plotOutput('plot','plot3')),
                   tabPanel("Co-Occurence Plot",plotOutput('plot1'))
       ) 
     )
