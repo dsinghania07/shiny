@@ -1,4 +1,5 @@
 shinyServer(function(input, output) {
+  options(shiny.maxRequestSize=30*1024^2)
   text <- reactive({
     if (is.null(input$text)) {return(NULL) }
     else{
