@@ -52,7 +52,7 @@ shinyServer(function(input, output) {
     x <- as.data.frame(x)
     all_nouns = x %>% subset(., upos %in% "NOUN") 
     top_nouns = txt_freq(all_nouns$lemma) 
-    head(top_nouns, 100)	
+    #head(top_nouns, 100)	
     wordcloud(top_nouns$key,top_nouns$freq,min.freq = 2,max.words = 100,random.order = FALSE,colors = brewer.pal(6, "Dark2"))
   })
   
