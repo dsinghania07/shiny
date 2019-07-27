@@ -8,6 +8,7 @@ if (!require(wordcloud)){install.packages("wordcloud")}
 if (!require(stringr)){install.packages("stringr")}
 if (!require(readr)){install.packages("readr")}
 if (!require(rvest)){install.packages("rvest")}
+if (!require(dplyr)){install.packages("dplyr")}
 library(shiny)
 library(udpipe)
 library(textrank)
@@ -19,3 +20,4 @@ library(wordcloud)
 library(stringr)
 library(readr)
 library(rvest)
+library(dplyr)
