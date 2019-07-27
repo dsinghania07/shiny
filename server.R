@@ -18,6 +18,14 @@ shinyServer(function(input, output) {
       }
   })
 # PLotting    
+  
+  output$table = renderDataTable({
+    inputText <-  as.character(text_1())
+    model = udpipe_load_model(file=input$udpipe$datapath)
+    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- as.data.frame(x) 
+  })
+  
   output$plot = renderPlot({
     inputText <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
@@ -105,11 +113,7 @@ shinyServer(function(input, output) {
                        
                        labs(title = "Cooccurrence Plot", subtitle = "Language"))
     
-    output$table = renderDataTable({
-      inputText <-  as.character(text_1())
-      model = udpipe_load_model(file=input$udpipe$datapath)
-      x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
-      x <- as.data.frame(x)    
   
   })
+
 })
