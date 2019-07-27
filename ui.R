@@ -24,7 +24,7 @@ shinyUI(
                           selected = "English"),
               hr(),
               fluidRow(column(3, verbatimTextOutput("value"))),
-              #submitButton(text = "Apply Changes", icon("refresh"))
+              submitButton(text = "Apply Changes", icon("refresh"))
               ),
       
     mainPanel(
