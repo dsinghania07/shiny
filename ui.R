@@ -22,8 +22,8 @@ shinyUI(
               selectInput("Language", label = h3("Select Language"), 
                           choices = list("English" = "English"), 
                           selected = "English"),
-              #hr(),
-              #fluidRow(column(3, verbatimTextOutput("value"))),
+              hr(),
+              fluidRow(column(3, verbatimTextOutput("value"))),
               #submitButton(text = "Apply Changes", icon("refresh"))
               ),
       
