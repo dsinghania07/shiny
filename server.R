@@ -122,7 +122,7 @@ shinyServer(function(input, output) {
     }
     word_1 <- head(co_occ, 75)
     word_1 <- igraph::graph_from_data_frame(word_1) 
-    suppressWarnings(ggraph(word_1, layout = "fr") +  
+    ggraph(word_1) +  
                        
                        geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "red") +  
                        geom_node_text(aes(label = name), col = "green", size = 6) +
