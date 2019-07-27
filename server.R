@@ -130,7 +130,7 @@ shinyServer(function(input, output) {
                        theme_graph(base_family = "Arial Narrow") +  
                        theme(legend.position = "none") +
                        
-                       labs(title = "Cooccurrence Plot", subtitle = "Language"))
+                       labs(title = "Cooccurrence Plot", subtitle = "Language")
     
   
   })
