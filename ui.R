@@ -19,12 +19,13 @@ shinyUI(
               checkboxGroupInput("file", label = h3("Speech Tags to be Selected"), 
                                  choices = list("Adjective(JJ)" = "JJ", "Noun(NN)" = "NN", "Proper Noun(NNP)" = "NNP", "Adverb(RB)" = "RB", "Verb(VB)" = "VB"),
                                  selected = c("JJ","NN","NNP")),
-              selectInput("Language", label = h3("Select Language"), 
-                          choices = list("English" = "English", "Hindi" = "Hindi","German" = "German", "Other" = "Other"), 
-                          selected = "English"),
-              hr(),
-              fluidRow(column(3, verbatimTextOutput("value"))),
-              submitButton(text = "Apply Changes", icon("refresh"))),
+              #selectInput("Language", label = h3("Select Language"), 
+               #           choices = list("English" = "English", "Hindi" = "Hindi","German" = "German", "Other" = "Other"), 
+                #          selected = "English"),
+              #hr(),
+              #fluidRow(column(3, verbatimTextOutput("value"))),
+              #submitButton(text = "Apply Changes", icon("refresh"))
+              ),
       
     mainPanel(
       
