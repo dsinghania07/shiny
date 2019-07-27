@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
       return(Data)
     }
   })
-  text1 <- reactive({
+  text_2 <- reactive({
         if (is.null(input$udpipe)) {   
           return(NULL) } else{
         
