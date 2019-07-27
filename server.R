@@ -92,7 +92,6 @@ shinyServer(function(input, output) {
     }
     wordnetwork <- head(co_occ, 75)
     wordnetwork <- igraph::graph_from_data_frame(wordnetwork) 
-    windowsFonts(devanew=windowsFont("Devanagari new normal"))
     suppressWarnings(ggraph(wordnetwork, layout = "fr") +  
                        
                        geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "orange") +  
@@ -101,6 +100,6 @@ shinyServer(function(input, output) {
                        theme_graph(base_family = "Arial Unicode MS") +  
                        theme(legend.position = "none") +
                        
-                       labs(title = "Cooccurrence Plot", subtitle = "Speech TAGS as chosen"))
+                       labs(title = "Cooccurrence Plot", subtitle = "Language"))
   })
 })

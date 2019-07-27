@@ -16,7 +16,7 @@ shinyUI(
         
               fileInput("text", "Upload Sample Text File :"),
               fileInput("udpipe", "Upload Trained UDPipe Model:"),
-              checkboxGroupInput("checkGroup", label = h3("Speech Tags to be Selected"), 
+              checkboxGroupInput("file", label = h3("Speech Tags to be Selected"), 
                                  choices = list("Adjective(JJ)" = "JJ", "Noun(NN)" = "NN", "Proper Noun(NNP)" = "NNP", "Adverb(RB)" = "RB", "Verb(VB)" = "VB"),
                                  selected = c("JJ","NN","NNP")),
               selectInput("Language", label = h3("Select Language"), 
