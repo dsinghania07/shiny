@@ -29,20 +29,8 @@ shinyServer(function(input, output) {
     else{
       y <- input$file
       for(i in seq_len(length(input$file))){
-        if (input$file[i] == "JJ"){
-          y[i] <- "ADJ"
-        }
-        else if (input$file[i] == "NN"){
+        if (input$file[i] == "NN"){
           y[i] <- "NOUN"
-        }
-        else if (input$file[i] == "NNP"){
-          y[i] <- "PROPN"
-        }
-        else if (input$file[i] == "RB"){
-          y[i] <- "ADV"
-        }
-        else{
-          y[i] <- "VB"
         }
       }
       all_words = x %>% subset(., upos %in% y);
@@ -56,7 +44,32 @@ shinyServer(function(input, output) {
               colors = brewer.pal(6, "Dark2"))
   })
   
-  
+  output$plot3 = renderPlot({
+    inputText <-  as.character(text_1())
+    model = udpipe_load_model(file=input$udpipe$datapath)
+    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- as.data.frame(x)
+    if (input$Language == "English"){
+      all_words = x %>% subset(., xpos %in% input$file);
+    }
+    else{
+      y <- input$file
+      for(i in seq_len(length(input$file))){
+        if (input$file[i] == "VB"){
+          y[i] <- "VERB"
+        }
+      }
+      all_words = x %>% subset(., upos %in% y);
+    }
+    top_words = txt_freq(all_words$lemma)
+    wordcloud(words = top_words$key, 
+              freq = top_words$freq, 
+              min.freq = 2, 
+              max.words = 100,
+              random.order = FALSE, 
+              colors = brewer.pal(6, "Dark2"))
+  })
+    
   output$plot1 = renderPlot({
     inputText <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
