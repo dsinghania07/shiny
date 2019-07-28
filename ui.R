@@ -35,7 +35,7 @@ shinyUI(
                            #selectInput("dataset","Choose a dataset:",choices = c("dataset")),
                            ),
                   
-                  tabPanel("Word Cloud",h4(p("Noun")),plotOutput('plot'),h4(p("Noun")),plotOutput('plot3')),
+                  tabPanel("Word Cloud",h4(p("Noun")),plotOutput('plot'),h4(p("Verb")),plotOutput('plot3')),
                   #tabPanel("Word Cloud",plotOutput('plot'),plotOutput('plot3')),
                   tabPanel("Co-Occurene Plot",plotOutput('plot1'))
       ) 
