@@ -18,14 +18,12 @@ shinyServer(function(input, output) {
       }
   })
 
-  function(input, output) {
-    #output$table = renderDataTable({
+    output$table = renderDataTable({
     text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     x <- select(x, -sentence)
-    output$table = renderDataTable({text_4})  
     
   output$downloadData <- downloadHandler(
     filename = function() {
@@ -35,7 +33,8 @@ shinyServer(function(input, output) {
       write.csv(datasetInput(), file, row.names = FALSE)
     }
   )
-  } 
+  })
+    
   output$plot = renderPlot({
     text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
