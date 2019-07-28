@@ -23,9 +23,8 @@ shinyServer(function(input, output) {
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
-    #x <- select(x, -sentence)
-    x = subset(x, x$xpos %in% input$file) 
-    group = c("doc_id", "paragraph_id", "sentence_id") 
+    x <- select(x, -sentence)
+     
   })
   
   
