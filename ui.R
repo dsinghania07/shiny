@@ -19,9 +19,9 @@ shinyUI(
               checkboxGroupInput("file", label = h3("Please select choice"), 
                                  choices = list("Adjective(JJ)" = "JJ", "Noun(NN)" = "NN", "Proper Noun(NNP)" = "NNP", "Adverb(RB)" = "RB", "Verb(VB)" = "VB"),
                                  selected = c("JJ","NN","NNP")),
-             selectInput("Language", label = h3("Select Language"), 
-                         choices = list("English" = "English"), 
-                        selected = "English"),
+             #selectInput("Language", label = h3("Select Language"), 
+              #           choices = list("English" = "English"), 
+               #         selected = "English"),
               hr(),
               fluidRow(column(3, verbatimTextOutput("value"))),
               submitButton(text = "Apply Changes", icon("refresh"))
