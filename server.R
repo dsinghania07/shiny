@@ -24,9 +24,9 @@ shinyServer(function(input, output) {
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     x <- select(x, -sentence)
-    co_occ <- cooccurrence(
-      x = subset(x, x$xpos %in% input$file), term = "lemma",
-      group = c("doc_id")
+    #co_occ <- cooccurrence(
+      x = cooccurrence(x$lemma, relevant = x$xpos %in% c("NN", "JJ","NNP","RB","VB"), skipgram = 4
+      #group = c("doc_id")
       )
     })
     
