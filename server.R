@@ -25,16 +25,19 @@ shinyServer(function(input, output) {
     x <- as.data.frame(x)
     x <- select(x, -sentence)
      
-  })
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste(input$dataset, ".csv", sep = "")
+      },
+      content = function(file) {
+        write.csv(datasetInput(), file, row.names = FALSE)
+      }
+    ) 
+    
+ })
   
   
-  #datasetInput <- reactive({
-   # switch(input$table)
-  #})
-  
-  #output$table <- renderTable({
-   # datasetInput()
-  #})
+ 
   
   output$downloadData <- downloadHandler(
     filename = function() {
