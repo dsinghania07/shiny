@@ -1,35 +1,21 @@
 
 library("shiny")
-tags$style(type="text/css",
-           ".shiny-output-error { visibility: hidden; }",
-           ".shiny-output-error:before { visibility: hidden; }"
-)
-
 shinyUI(
   fluidPage(
-  
-    titlePanel("Shiny App around the UDPipe NLP workflow"),
-  
-    sidebarLayout( 
-      
-      sidebarPanel(  
-        
+  titlePanel("Shiny App around the UDPipe NLP workflow"),
+  sidebarLayout( 
+  sidebarPanel(  
               fileInput("text", "Upload Sample Text File :"),
               fileInput("udpipe", "Upload Trained UDPipe Model:"),
               checkboxGroupInput("file", label = h3("Please select choice"), 
                                  choices = list("Adjective(JJ)" = "JJ", "Noun(NN)" = "NN", "Proper Noun(NNP)" = "NNP", "Adverb(RB)" = "RB", "Verb(VB)" = "VB"),
                                  selected = c("JJ","NN","NNP")),
-             #selectInput("Language", label = h3("Select Language"), 
-              #           choices = list("English" = "English"), 
-               #         selected = "English"),
               hr(),
               fluidRow(column(3, verbatimTextOutput("value"))),
               submitButton(text = "Apply Changes", icon("refresh"))
               ),
-      
-    mainPanel(
-      
-      tabsetPanel(type = "tabs",
+  mainPanel(
+        tabsetPanel(type = "tabs",
                   tabPanel("Overview",
                            h4(p("Data input")),
                            p("This app supports only text files (.txt) data file.Please upload the file only in .txt format",align="justify"),
