@@ -37,7 +37,7 @@ shinyServer(function(input, output) {
       paste(input$table, ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(datasetInput(), file, row.names = FALSE)
+      write.csv(data, file, row.names = FALSE)
     }
   )}
   
