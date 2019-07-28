@@ -18,7 +18,7 @@ shinyServer(function(input, output) {
       }
   })
     
-    thedata <- reactive(text_4)
+    
     output$table = renderDataTable({
     text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
@@ -32,13 +32,13 @@ shinyServer(function(input, output) {
     })
     
     output$downloadData <- downloadHandler(
-    filename = function() {"deepak.csv"
-      #paste(input$table, ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(thedata, file)
-    }
-  )
+      filename = function() {
+        paste("data1", ".csv", sep = ",")
+      },
+      content = function(file) {
+        write.csv(text_2(), file)
+      }
+    )
   
     
   output$plot = renderPlot({
