@@ -22,8 +22,8 @@ shinyUI(
                            p('To use this app, click on', 
                              span(strong("Upload Sample Text File in .txt format:"),
                              'and click on',
-                             span(strong("Upload Trained UDPipe Model:"), 'and upload the UDPipe file.'),
-                             span(strong("SELECT LANGUAGE"))))),
+                             span(strong("Upload Trained UDPipe Model:"), 'and upload the UDPipe file.')
+                             ))),
                   tabPanel("Annoted Documents",dataTableOutput('table'),downloadButton("downloadData", "Download")
                            #selectInput("dataset","Choose a dataset:",choices = c("dataset")),
                            ),
