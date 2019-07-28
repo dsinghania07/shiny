@@ -17,14 +17,41 @@ shinyServer(function(input, output) {
         return(text1)
       }
   })
-# PLotting    
-  
+
   output$table = renderDataTable({
-    inputText <-  as.character(text_1())
+    text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
-    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     x <- select(x, -sentence)
+    if (input$Language == "English"){
+      co_occ <- cooccurrence(
+        x = subset(x, x$xpos %in% input$file), term = "lemma", 
+        group = c("doc_id", "paragraph_id", "sentence_id")) 
+    }
+    else{
+      y <- input$file
+      for(i in seq_len(length(input$file))){
+        if (input$file[i] == "JJ"){
+          y[i] <- "ADJ"
+        }
+        else if (input$file[i] == "NN"){
+          y[i] <- "NOUN"
+        }
+        else if (input$file[i] == "NNP"){
+          y[i] <- "PROPN"
+        }
+        else if (input$file[i] == "RB"){
+          y[i] <- "ADV"
+        }
+        else{
+          y[i] <- "VB"
+        }
+      }
+      co_occ <- cooccurrence(
+        x = subset(x, x$upos %in% y), term = "lemma", 
+        group = c("doc_id", "paragraph_id", "sentence_id"))
+    }
   })
   
   
@@ -46,9 +73,9 @@ shinyServer(function(input, output) {
   )
   
   output$plot = renderPlot({
-    inputText <-  as.character(text_1())
+    text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
-    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     all_nouns = x %>% subset(., upos %in% "NOUN") 
     top_nouns = txt_freq(all_nouns$lemma) 
@@ -56,9 +83,9 @@ shinyServer(function(input, output) {
   })
   
   output$plot3 = renderPlot({
-    inputText <-  as.character(text_1())
+    text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
-    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     all_verbs = x %>% subset(., upos %in% "VERB") 
     top_verbs = txt_freq(all_verbs$lemma)
@@ -66,9 +93,9 @@ shinyServer(function(input, output) {
   })
     
   output$plot1 = renderPlot({
-    inputText <-  as.character(text_1())
+    text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
-    x <- udpipe_annotate(model, x = inputText, doc_id = seq_along(inputText))
+    x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     if (input$Language == "English"){
       co_occ <- cooccurrence(
