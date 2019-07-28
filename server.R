@@ -1,3 +1,10 @@
+####################################################################
+#### Deepak Singhania -- 11915070                               ####
+#### Prakash Sijwali --                                         ####   
+#### Nitesh JIndal --                                           #### 
+####################################################################
+
+
 shinyServer(function(input, output) {
   options(shiny.maxRequestSize=30*1024^2)
   text_1 <- reactive({
