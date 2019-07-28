@@ -18,11 +18,11 @@ shinyServer(function(input, output) {
       }
   })
 
-  function(input, output) {
-    text_4 <- reactive({
-      switch(input$dataset,"dataset" = dataset)
-    })
-  }
+ # function(input, output) {
+  #  text_4 <- reactive({
+   #   switch(input$dataset,"dataset" = dataset)
+  #  })
+  #}
   output$table = renderDataTable({
     text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
