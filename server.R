@@ -29,15 +29,16 @@ shinyServer(function(input, output) {
       group = c("doc_id", "paragraph_id", "sentence_id")
       )
     })
-    
-  output$downloadData <- downloadHandler(
+    datasetInput<-function(input,output){
+      input$table
+      output$downloadData <- downloadHandler(
     filename = function() {
       paste(input$table, ".csv", sep = "")
     },
     content = function(file) {
       write.csv(datasetInput(), file, row.names = FALSE)
     }
-  )
+  )}
   
     
   output$plot = renderPlot({
