@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
 
   function(input, output) {
     datasetInput <- reactive({
-      switch(input$dataset)
+      switch(input$dataset,"dataset" = dataset)
     })
   }
   output$table = renderDataTable({
