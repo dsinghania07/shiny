@@ -18,6 +18,11 @@ shinyServer(function(input, output) {
       }
   })
 
+  function(input, output) {
+    datasetInput <- reactive({
+      switch(input$dataset)
+    })
+  
   output$table = renderDataTable({
     text_4 <-  as.character(text_1())
     model = udpipe_load_model(file=input$udpipe$datapath)
@@ -32,7 +37,7 @@ shinyServer(function(input, output) {
       paste(input$table, ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(x(), file, row.names = FALSE)
+      write.csv(datasetInput(), file, row.names = FALSE)
     }
   )
   
