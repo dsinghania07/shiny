@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
       )
     })
     
-    datasetInput<-function(input,output){
+    
       data <- text_1
       output$downloadData <- downloadHandler(
     filename = function() {
@@ -39,7 +39,7 @@ shinyServer(function(input, output) {
     content = function(file) {
       write.csv(data, file, row.names = FALSE)
     }
-  )}
+  )
   
     
   output$plot = renderPlot({
