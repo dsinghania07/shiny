@@ -29,8 +29,9 @@ shinyServer(function(input, output) {
       group = c("doc_id", "paragraph_id", "sentence_id")
       )
     })
+    
     datasetInput<-function(input,output){
-      input$table
+      data <- text_1
       output$downloadData <- downloadHandler(
     filename = function() {
       paste(input$table, ".csv", sep = "")
