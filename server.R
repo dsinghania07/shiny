@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
   })
 
   function(input, output) {
-    datasetInput <- reactive({
+    text_4 <- reactive({
       switch(input$dataset,"dataset" = dataset)
     })
   }
