@@ -22,8 +22,10 @@ shinyUI(
   mainPanel(
         tabsetPanel(type = "tabs",
                   tabPanel("Overview",
+                           h4(p("About App")),p("This Shiny app is designed so as to know different word cloud basis noun and verb. It will
+                              also explain about the Co occurrence of the data with the help of UDPIPE "),
                            h4(p("Data input")),
-                           p("This app supports only text files (.txt) data file.Please upload the file only in .txt format",align="justify"),
+                           p("This app supports only text files (.txt).Please upload the file only in .txt format",align="justify"),
                            p('To use this app, click on', 
                              span(strong("Upload Sample Text File in .txt format:"),
                              'and click on',
