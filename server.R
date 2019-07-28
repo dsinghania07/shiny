@@ -24,7 +24,7 @@ shinyServer(function(input, output) {
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
     x <- select(x, -sentence)
-    
+    })  
   output$downloadData <- downloadHandler(
     filename = function() {
       paste(input$table, ".csv", sep = "")
@@ -33,7 +33,7 @@ shinyServer(function(input, output) {
       write.csv(datasetInput(), file, row.names = FALSE)
     }
   )
-  })
+  
     
   output$plot = renderPlot({
     text_4 <-  as.character(text_1())
