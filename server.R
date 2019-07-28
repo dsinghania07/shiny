@@ -25,9 +25,9 @@ shinyServer(function(input, output) {
     x <- as.data.frame(x)
     x <- select(x, -sentence)
     #co_occ <- cooccurrence(
-      x = cooccurrence(x$lemma, relevant = x$xpos %in% c("NN", "JJ","NNP","RB","VB"), skipgram = 4
-      #group = c("doc_id")
-      )
+     # x = subset(x, x$xpos %in% input$file), term = "lemma", 
+      #group = c("doc_id", "paragraph_id", "sentence_id")
+      #)
     })
     
   output$downloadData <- downloadHandler(
