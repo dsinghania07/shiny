@@ -69,34 +69,10 @@ shinyServer(function(input, output) {
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
-    if (input$Language == "English"){
-      co_occ <- cooccurrence(
+          co_occ <- cooccurrence(
         x = subset(x, x$xpos %in% input$file), term = "lemma", 
         group = c("doc_id", "paragraph_id", "sentence_id")) 
-    }
-    else{
-      y <- input$file
-      for(i in seq_len(length(input$file))){
-        if (input$file[i] == "JJ"){
-          y[i] <- "ADJ"
-        }
-        else if (input$file[i] == "NN"){
-          y[i] <- "NOUN"
-        }
-        else if (input$file[i] == "NNP"){
-          y[i] <- "PROPN"
-        }
-        else if (input$file[i] == "RB"){
-          y[i] <- "ADV"
-        }
-        else{
-          y[i] <- "VB"
-        }
-      }
-      co_occ <- cooccurrence(
-        x = subset(x, x$upos %in% y), term = "lemma", 
-        group = c("doc_id", "paragraph_id", "sentence_id"))
-    }
+    
     word_1 <- head(co_occ, 75)
     word_1 <- igraph::graph_from_data_frame(word_1) 
     ggraph(word_1, layout = "fr") +  
