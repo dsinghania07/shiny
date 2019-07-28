@@ -23,7 +23,9 @@ shinyServer(function(input, output) {
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
-    x <- select(x, -sentence)
+    #x <- select(x, -sentence)
+    x = subset(x, x$xpos %in% input$file) 
+    group = c("doc_id", "paragraph_id", "sentence_id") 
   })
   
   
@@ -69,9 +71,9 @@ shinyServer(function(input, output) {
     model = udpipe_load_model(file=input$udpipe$datapath)
     x <- udpipe_annotate(model, x = text_4, doc_id = seq_along(text_4))
     x <- as.data.frame(x)
-          co_occ <- cooccurrence(
-        x = subset(x, x$xpos %in% input$file), term = "lemma", 
-        group = c("doc_id", "paragraph_id", "sentence_id")) 
+    co_occ <- cooccurrence(
+    x = subset(x, x$xpos %in% input$file), term = "lemma", 
+    group = c("doc_id", "paragraph_id", "sentence_id")) 
     
     word_1 <- head(co_occ, 75)
     word_1 <- igraph::graph_from_data_frame(word_1) 
